@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Neon Periodic Table</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: #eafaff;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(
+        ellipse at top,
+        #102653,
+        #050b1d 55%,
+        #02040c
+      );
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    h1 {
+      color: white;
+      font-size: clamp(28px, 6vw, 55px);
+      text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #167bff,
+        0 0 45px #ff36d7;
+    }
+
+    .panel {
+      margin: 15px auto;
+      padding: 15px;
+      max-width: 1400px;
+      background: #07122bd9;
+      border: 1px solid #00eaff;
+      border-radius: 16px;
+      box-shadow: 0 0 20px #007cff33;
+    }
+
+    .periodic {
+      display: grid;
+      grid-template-columns: repeat(18, minmax(43px, 1fr));
+      gap: 5px;
+      min-width: 850px;
+    }
+
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .element {
+      padding: 5px 2px;
+      color: white;
+      background: #071a35;
+      border: 1px solid #00eaff;
+      border-radius: 7px;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 0 9px #00eaff66;
+      transition: transform .25s, box-shadow .25s;
+    }
+
+    .element:hover {
+      transform: translateY(-5px) scale(1.06);
+      box-shadow: 0 0 20px #00eaff;
+    }
+
+    .sym {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .num, .name {
+      display: block;
+      font-size: 10px;
+    }
+
+    .atom-stage {
+      height: 260px;
+      display: grid;
+      place-items: center;
+      perspective: 800px;
+    }
+
+    .atom {
+      width: 180px;
+      height: 180px;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotateAtom 10s linear infinite;
+    }
+
+    .ring {
+      position: absolute;
+      inset: 45px 0;
+      border: 2px solid #00eaff;
+      border-radius: 50%;
+      box-shadow: 0 0 15px #00eaff;
+    }
+
+    .ring:nth-child(2) {
+      transform: rotate(60deg);
+      border-color: #ff36d7;
+    }
+
+    .ring:nth-child(3) {
+      transform: rotate(-60deg);
+      border-color: #00ffae;
+    }
+
+    .nucleus {
+      position: absolute;
+      left: 70px;
+      top: 70px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #ff398b;
+      box-shadow: 0 0 25px #ff398b;
+    }
+
+    @keyframes rotateAtom {
+      to {
+        transform: rotateY(360deg) rotateX(20deg);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .panel {
+        margin: 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>3D PERIODIC TABLE</h1>
+    <p>EXPLORE 118 ELEMENTS OF THE UNIVERSE</p>
+  </header>
+
+  <main class="panel">
+    <input
+      id="search"
+      type="search"
+      placeholder="Search an element..."
+    >
+
+    <div class="table-scroll">
+      <div class="periodic" id="periodic"></div>
+    </div>
+
+    <h2 id="dName">Hydrogen</h2>
+    <p id="dSymbol">H</p>
+    <p id="dMass">Atomic mass: 1.008</p>
+
+    <section class="atom-stage">
+      <div class="atom">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="nucleus"></div>
+      </div>
+    </section>
+
+    <p>Explore elements, their properties and atomic structure.</p>
+  </main>
+
+  <!-- Complete element data and interactive JavaScript
+       are included in the downloadable index.html file. -->
+</body>
+</html>
